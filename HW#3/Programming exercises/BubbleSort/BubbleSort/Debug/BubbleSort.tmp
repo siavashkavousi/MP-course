@@ -1,0 +1,38 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.1.51</VERSION>
+ <DEVICE>"ATmega16"</DEVICE>
+ <WORKING_DIR>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:\Program Files (x86)\Atmel\Atmel Studio 6.0\extensions\Atmel\AVRAssembler\2.1.51.24\AvrAssembler/Include</DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\BubbleSort.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:\Program Files (x86)\Atmel\Atmel Studio 6.0\extensions\Atmel\AVRAssembler\2.1.51.24\AvrAssembler/Include\m16def.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\Debug/BubbleSort.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\Debug/BubbleSort.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\Debug\BubbleSort.map</FILE>
+  <FILE>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\Debug\BubbleSort.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <reset><FILE>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\BubbleSort.asm</FILE><LINE>18</LINE></reset>
+  <reset_isr><FILE>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\BubbleSort.asm</FILE><LINE>21</LINE></reset_isr>
+  <start><FILE>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\BubbleSort.asm</FILE><LINE>33</LINE></start>
+  <list><FILE>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\BubbleSort.asm</FILE><LINE>90</LINE></list>
+  <loadbytes><FILE>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\BubbleSort.asm</FILE><LINE>41</LINE></loadbytes>
+  <loadbytes_quit><FILE>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\BubbleSort.asm</FILE><LINE>50</LINE></loadbytes_quit>
+  <start1><FILE>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\BubbleSort.asm</FILE><LINE>53</LINE></start1>
+  <start_led_off><FILE>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\BubbleSort.asm</FILE><LINE>61</LINE></start_led_off>
+  <start_led_on><FILE>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\BubbleSort.asm</FILE><LINE>57</LINE></start_led_on>
+  <quit><FILE>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\BubbleSort.asm</FILE><LINE>66</LINE></quit>
+  <bubble_sort><FILE>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\BubbleSort.asm</FILE><LINE>69</LINE></bubble_sort>
+  <bubble_sort_outerloop><FILE>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\BubbleSort.asm</FILE><LINE>74</LINE></bubble_sort_outerloop>
+  <bubble_sort_innerloop><FILE>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\BubbleSort.asm</FILE><LINE>76</LINE></bubble_sort_innerloop>
+  <bubble_sort_noswap><FILE>C:\Users\siava\Documents\Atmel Studio\BubbleSort\BubbleSort\BubbleSort.asm</FILE><LINE>83</LINE></bubble_sort_noswap>
+ </LABELS>
+</ASSEMBLER_INFO>

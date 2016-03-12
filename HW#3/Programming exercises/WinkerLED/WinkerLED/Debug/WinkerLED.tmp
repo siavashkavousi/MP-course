@@ -1,0 +1,32 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.1.51</VERSION>
+ <DEVICE>"ATmega16"</DEVICE>
+ <WORKING_DIR>C:\Users\siava\Documents\Atmel Studio\WinkerLED\WinkerLED\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:\Program Files (x86)\Atmel\Atmel Studio 6.0\extensions\Atmel\AVRAssembler\2.1.51.24\AvrAssembler/Include</DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\siava\Documents\Atmel Studio\WinkerLED\WinkerLED\WinkerLED.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:\Program Files (x86)\Atmel\Atmel Studio 6.0\extensions\Atmel\AVRAssembler\2.1.51.24\AvrAssembler/Include\m16def.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\siava\Documents\Atmel Studio\WinkerLED\WinkerLED\Debug/WinkerLED.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>C:\Users\siava\Documents\Atmel Studio\WinkerLED\WinkerLED\Debug/WinkerLED.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>C:\Users\siava\Documents\Atmel Studio\WinkerLED\WinkerLED\Debug\WinkerLED.map</FILE>
+  <FILE>C:\Users\siava\Documents\Atmel Studio\WinkerLED\WinkerLED\Debug\WinkerLED.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <reset><FILE>C:\Users\siava\Documents\Atmel Studio\WinkerLED\WinkerLED\WinkerLED.asm</FILE><LINE>9</LINE></reset>
+  <reset_isr><FILE>C:\Users\siava\Documents\Atmel Studio\WinkerLED\WinkerLED\WinkerLED.asm</FILE><LINE>12</LINE></reset_isr>
+  <start><FILE>C:\Users\siava\Documents\Atmel Studio\WinkerLED\WinkerLED\WinkerLED.asm</FILE><LINE>23</LINE></start>
+  <start_push><FILE>C:\Users\siava\Documents\Atmel Studio\WinkerLED\WinkerLED\WinkerLED.asm</FILE><LINE>28</LINE></start_push>
+  <start_push_loop><FILE>C:\Users\siava\Documents\Atmel Studio\WinkerLED\WinkerLED\WinkerLED.asm</FILE><LINE>30</LINE></start_push_loop>
+  <delay><FILE>C:\Users\siava\Documents\Atmel Studio\WinkerLED\WinkerLED\WinkerLED.asm</FILE><LINE>42</LINE></delay>
+  <delay_loop1><FILE>C:\Users\siava\Documents\Atmel Studio\WinkerLED\WinkerLED\WinkerLED.asm</FILE><LINE>44</LINE></delay_loop1>
+  <delay_loop2><FILE>C:\Users\siava\Documents\Atmel Studio\WinkerLED\WinkerLED\WinkerLED.asm</FILE><LINE>46</LINE></delay_loop2>
+ </LABELS>
+</ASSEMBLER_INFO>

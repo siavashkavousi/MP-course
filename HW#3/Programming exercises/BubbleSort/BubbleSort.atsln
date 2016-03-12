@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{18226A42-8477-4023-8AD2-40C49DA407C9}") = "BubbleSort", "BubbleSort\BubbleSort.asmproj", "{39574D8D-E8EE-4CB6-A63A-AC621EF61031}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{39574D8D-E8EE-4CB6-A63A-AC621EF61031}.Debug|AVR.ActiveCfg = Debug|AVR
+		{39574D8D-E8EE-4CB6-A63A-AC621EF61031}.Debug|AVR.Build.0 = Debug|AVR
+		{39574D8D-E8EE-4CB6-A63A-AC621EF61031}.Release|AVR.ActiveCfg = Release|AVR
+		{39574D8D-E8EE-4CB6-A63A-AC621EF61031}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
