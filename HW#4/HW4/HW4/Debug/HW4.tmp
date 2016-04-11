@@ -1,0 +1,49 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.0</VERSION>
+ <DEVICE>"ATmega16"</DEVICE>
+ <WORKING_DIR>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.98\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.98\avrasm\inc\m16def.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Debug\HW4.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>HW4.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>HW4.map</FILE>
+  <FILE>HW4.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <Reset><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>35</LINE></Reset>
+  <EXT_INT0><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>5</LINE></EXT_INT0>
+  <rowFinder><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>71</LINE></rowFinder>
+  <colFinder><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>81</LINE></colFinder>
+  <keyFinder><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>92</LINE></keyFinder>
+  <toInf><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>68</LINE></toInf>
+  <zero><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>94</LINE></zero>
+  <one><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>103</LINE></one>
+  <end><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>236</LINE></end>
+  <two><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>112</LINE></two>
+  <three><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>121</LINE></three>
+  <four><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>130</LINE></four>
+  <five><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>140</LINE></five>
+  <six><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>149</LINE></six>
+  <seven><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>158</LINE></seven>
+  <eight><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>167</LINE></eight>
+  <nine><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>176</LINE></nine>
+  <A><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>185</LINE></A>
+  <B><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>194</LINE></B>
+  <C><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>203</LINE></C>
+  <D><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>212</LINE></D>
+  <E><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>221</LINE></E>
+  <F><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW4\HW4\Q2-3-KeyFind.asm</FILE><LINE>230</LINE></F>
+ </LABELS>
+</ASSEMBLER_INFO>
