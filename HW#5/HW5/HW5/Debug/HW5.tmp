@@ -1,0 +1,41 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.0</VERSION>
+ <DEVICE>"ATmega16"</DEVICE>
+ <WORKING_DIR>C:\Users\siava\Documents\Atmel Studio\7.0\HW5\HW5\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.98\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW5\HW5\Q1-1.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.98\avrasm\inc\m16def.inc</FILE>
+  <FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW5\HW5\m8_lcd_4bit.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW5\HW5\Debug\HW5.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>HW5.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>HW5.map</FILE>
+  <FILE>HW5.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <lcd_command8><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW5\HW5\m8_lcd_4bit.inc</FILE><LINE>29</LINE></lcd_command8>
+  <lcd_putchar><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW5\HW5\m8_lcd_4bit.inc</FILE><LINE>51</LINE></lcd_putchar>
+  <lcd_command><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW5\HW5\m8_lcd_4bit.inc</FILE><LINE>87</LINE></lcd_command>
+  <LCD_getchar><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW5\HW5\m8_lcd_4bit.inc</FILE><LINE>119</LINE></LCD_getchar>
+  <LCD_getaddr><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW5\HW5\m8_lcd_4bit.inc</FILE><LINE>144</LINE></LCD_getaddr>
+  <LCD_wait><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW5\HW5\m8_lcd_4bit.inc</FILE><LINE>168</LINE></LCD_wait>
+  <LCD_delay><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW5\HW5\m8_lcd_4bit.inc</FILE><LINE>175</LINE></LCD_delay>
+  <LCD_delay_outer><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW5\HW5\m8_lcd_4bit.inc</FILE><LINE>177</LINE></LCD_delay_outer>
+  <LCD_delay_inner><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW5\HW5\m8_lcd_4bit.inc</FILE><LINE>179</LINE></LCD_delay_inner>
+  <LCD_init><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW5\HW5\m8_lcd_4bit.inc</FILE><LINE>186</LINE></LCD_init>
+  <reset><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW5\HW5\Q1-1.asm</FILE><LINE>11</LINE></reset>
+  <reset_isr><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW5\HW5\Q1-1.asm</FILE><LINE>14</LINE></reset_isr>
+  <print_hello_world><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW5\HW5\Q1-1.asm</FILE><LINE>30</LINE></print_hello_world>
+  <start><FILE>C:\Users\siava\Documents\Atmel Studio\7.0\HW5\HW5\Q1-1.asm</FILE><LINE>27</LINE></start>
+ </LABELS>
+</ASSEMBLER_INFO>
