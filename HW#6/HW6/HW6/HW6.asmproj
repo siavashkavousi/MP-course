@@ -15,7 +15,7 @@
     <Name>HW6</Name>
     <RootNamespace>HW6</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
-    <EntryFile>$(MSBuildProjectDirectory)\Q1-1.asm</EntryFile>
+    <EntryFile>$(MSBuildProjectDirectory)\Q1-1-2LED.asm</EntryFile>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
     <CacheFlash>true</CacheFlash>
@@ -64,6 +64,9 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Q1-1-2LED.asm">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Q1-1.asm">
       <SubType>Code</SubType>
     </Compile>

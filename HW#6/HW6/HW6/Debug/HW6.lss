@@ -1,9 +1,9 @@
 
-AVRASM ver. 2.2.0  C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q1-1.asm Thu Apr 14 14:25:41 2016
+AVRASM ver. 2.2.0  C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q1-1-2LED.asm Thu Apr 14 14:46:22 2016
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.98\avrasm\inc\m16def.inc'
                  
-                 ;
+                 /*
                  
                  ;***** Created: 2011-02-09 12:03 ******* Source: ATmega16.xml ************
                  ;*************************************************************************
@@ -869,16 +869,17 @@ AVRASM ver. 2.2.0  C:\Users\siava\Google Drive\Academic Courses\Microprocessors\
                  #endif  /* _M16DEF_INC_ */
                  
                  
-                 ; HW6.asm
-                 ;
-                 ; Created: 4/14/2016 3:43:53 AM
-                 ; Author : siavash
-                 ;
-                 
+                  * Q1_1_2LED.asm
+                  *
+                  *  Created: 4/14/2016 2:32:38 PM
+                  *   Author: siavash
+                  */ 
+                  
                  .def temp = r16
                  .def argument = r17
                  .def return = r18
                  .def global_var = r19
+                 .def local_var = r20
                  
                  .org 0x00
                  reset:
@@ -895,7 +896,7 @@ AVRASM ver. 2.2.0  C:\Users\siava\Google Drive\Academic Courses\Microprocessors\
 000017 e014      	ldi r17, HIGH(RAMEND)
 000018 bf1e      	out SPH, r17
                  
-000019 e200      	ldi temp, (1 << PC5)
+000019 e600      	ldi temp, (1 << PC5) | (1 << PC6)
 00001a bb04      	out DDRC, temp
                  
 00001b b709      	in temp, TIMSK
@@ -909,7 +910,7 @@ AVRASM ver. 2.2.0  C:\Users\siava\Google Drive\Academic Courses\Microprocessors\
 000021 e030      	ldi global_var, 0x00
                  
 000022 9478      	sei
-000023 940c 0036 	jmp start
+000023 940c 003b 	jmp start
                  
                  timer0_ovf_isr:
 000025 94f8      	cli
@@ -926,20 +927,27 @@ AVRASM ver. 2.2.0  C:\Users\siava\Google Drive\Academic Courses\Microprocessors\
 00002d 9518      	reti
                  
                  wink_led:
-00002e 9bad      	sbis PORTC, PC5
-00002f c002      	rjmp wink_led_set_pc5
-000030 99ad      	sbic PORTC, PC5
-000031 c002      	rjmp wink_led_clear_pc5
-                 wink_led_set_pc5:
-000032 9aad      	sbi PORTC, PC5
-000033 c001      	rjmp wink_led_end
-                 wink_led_clear_pc5:
-000034 98ad      	cbi PORTC, PC5
+00002e b305      	in temp, PORTC
+00002f 2f40      	mov local_var, temp
+000030 7600      	andi temp, 0x60
+                 	// if PC5 and PC6 are zero, set them
+000031 3000      	cpi temp, 0x00
+000032 f011      	breq wink_led_set_pc56
+                 	// else clear them
+000033 3600      	cpi temp, 0x60
+000034 f019      	breq wink_led_clear_pc56
+                 wink_led_set_pc56:
+000035 6640      	ori local_var, 0x60
+000036 bb45      	out PORTC, local_var
+000037 c002      	rjmp wink_led_end
+                 wink_led_clear_pc56:
+000038 794f      	andi local_var, 0x9F
+000039 bb45      	out PORTC, local_var
                  wink_led_end:
-000035 9508      	ret
+00003a 9508      	ret
                  
                  start:
-000036 cfff      	rjmp start
+00003b cfff      	rjmp start
 
 
 RESOURCE USE INFORMATION
@@ -959,37 +967,37 @@ counted separately from r26..r31 here.
 "ATmega16" register use summary:
 x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  10 r17:   2 r18:   0 r19:   4 r20:   0 
+r13:   0 r14:   0 r15:   0 r16:  15 r17:   2 r18:   0 r19:   4 r20:   5 
 r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   0 r31:   0 
-Registers used: 3 out of 35 (8.6%)
+Registers used: 4 out of 35 (11.4%)
 
 "ATmega16" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
-andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
+andi  :   2 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :   2 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
 brne  :   1 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :   1 cbi   :   1 cbr   :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   1 cbi   :   0 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   2 cln   :   0 clr   :   0 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   1 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   2 inc   :   1 jmp   :   3 
+cpi   :   3 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   3 inc   :   1 jmp   :   3 
 ld    :   0 ldd   :   0 ldi   :   5 lds   :   0 lpm   :   0 lsl   :   0 
-lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   2 out   :   5 pop   :   0 
-push  :   0 rcall :   0 ret   :   1 reti  :   1 rjmp  :   4 rol   :   0 
-ror   :   0 sbc   :   0 sbci  :   0 sbi   :   1 sbic  :   1 sbis  :   1 
+lsr   :   0 mov   :   1 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
+neg   :   0 nop   :   0 or    :   0 ori   :   3 out   :   7 pop   :   0 
+push  :   0 rcall :   0 ret   :   1 reti  :   1 rjmp  :   2 rol   :   0 
+ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   2 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 18 out of 113 (15.9%)
+Instructions used: 17 out of 113 (15.0%)
 
 "ATmega16" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x00006e     78      0     78   16384   0.5%
+[.cseg] 0x000000 0x000078     88      0     88   16384   0.5%
 [.dseg] 0x000060 0x000060      0      0      0    1024   0.0%
 [.eseg] 0x000000 0x000000      0      0      0     512   0.0%
 

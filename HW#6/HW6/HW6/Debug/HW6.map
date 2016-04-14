@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.0  C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q1-1.asm Thu Apr 14 14:25:41 2016
+AVRASM ver. 2.2.0  C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q1-1-2LED.asm Thu Apr 14 14:46:22 2016
 
 
 EQU  SIGNATURE_000 0000001e
@@ -608,13 +608,14 @@ DEF  temp         r16
 DEF  argument     r17
 DEF  return       r18
 DEF  global_var   r19
+DEF  local_var    r20
 CSEG reset        00000000
 CSEG reset_isr    00000014
 CSEG timer0_ovf   00000012
 CSEG timer0_ovf_isr 00000025
-CSEG start        00000036
+CSEG start        0000003b
 CSEG timer0_ovf_isr_end 0000002c
 CSEG wink_led     0000002e
-CSEG wink_led_set_pc5 00000032
-CSEG wink_led_clear_pc5 00000034
-CSEG wink_led_end 00000035
+CSEG wink_led_set_pc56 00000035
+CSEG wink_led_clear_pc56 00000038
+CSEG wink_led_end 0000003a
