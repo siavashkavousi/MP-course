@@ -56,9 +56,9 @@ timer0_ovf_isr_end:
 	reti
 
 wink_led:
-	sbis PORTC, PC5
+	sbis PINC, PC5
 	rjmp wink_led_set_pc5
-	sbic PORTC, PC5
+	sbic PINC, PC5
 	rjmp wink_led_clear_pc5
 wink_led_set_pc5:
 	sbi PORTC, PC5

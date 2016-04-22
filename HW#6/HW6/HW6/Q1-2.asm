@@ -49,9 +49,9 @@ timer0_ovf_isr:
 	reti
 
 wink_led:
-	sbis PORTB, PB3
+	sbis PINB, PB3
 	rjmp wink_led_set_pb3
-	sbic PORTB, PB3
+	sbic PINB, PB3
 	rjmp wink_led_clear_pb3
 wink_led_set_pb3:
 	sbi PORTB, PB3
