@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.0  C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm Fri Apr 22 16:30:04 2016
+AVRASM ver. 2.2.0  C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm Fri Apr 22 16:51:10 2016
 
 
 EQU  SIGNATURE_000 0000001e
@@ -609,7 +609,8 @@ DEF  argument     r17
 DEF  return       r18
 DEF  global_var   r19
 CSEG reset        00000000
-CSEG reset_isr    00000002
-CSEG start        00000016
-CSEG full_rotation 0000001d
-CSEG half_rotation 00000020
+CSEG reset_isr    00000028
+CSEG timer_compare_match_isr 0000003c
+CSEG start        0000003f
+CSEG full_rotation 00000046
+CSEG half_rotation 00000049

@@ -23,9 +23,10 @@
  </OUTPUT_FILES>
  <LABELS>
   <reset><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm</FILE><LINE>14</LINE></reset>
-  <reset_isr><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm</FILE><LINE>17</LINE></reset_isr>
-  <start><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm</FILE><LINE>44</LINE></start>
-  <full_rotation><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm</FILE><LINE>51</LINE></full_rotation>
-  <half_rotation><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm</FILE><LINE>56</LINE></half_rotation>
+  <reset_isr><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm</FILE><LINE>20</LINE></reset_isr>
+  <timer_compare_match_isr><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm</FILE><LINE>47</LINE></timer_compare_match_isr>
+  <start><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm</FILE><LINE>52</LINE></start>
+  <full_rotation><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm</FILE><LINE>59</LINE></full_rotation>
+  <half_rotation><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm</FILE><LINE>64</LINE></half_rotation>
  </LABELS>
 </ASSEMBLER_INFO>

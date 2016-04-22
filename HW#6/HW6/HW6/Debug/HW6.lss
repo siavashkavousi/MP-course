@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.0  C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm Fri Apr 22 16:30:04 2016
+AVRASM ver. 2.2.0  C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm Fri Apr 22 16:51:10 2016
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.98\avrasm\inc\m16def.inc'
                  
@@ -882,51 +882,59 @@ AVRASM ver. 2.2.0  C:\Users\siava\Google Drive\Academic Courses\Microprocessors\
                  
                  .org 0x00
                  reset:
-000000 940c 0002 	jmp reset_isr
+000000 940c 0028 	jmp reset_isr
+                 
+                 .org 0x26
+000026 940c 003c 	jmp timer_compare_match_isr
                  
                  reset_isr:
-000002 94f8      	cli
-000003 e50f      	ldi r16, LOW(RAMEND)
-000004 bf0d      	out SPL, r16
-000005 e014      	ldi r17, HIGH(RAMEND)
-000006 bf1e      	out SPH, r17
+000028 94f8      	cli
+000029 e50f      	ldi r16, LOW(RAMEND)
+00002a bf0d      	out SPL, r16
+00002b e014      	ldi r17, HIGH(RAMEND)
+00002c bf1e      	out SPH, r17
                  
-000007 b709      	in temp, TIMSK
-000008 6002      	ori temp, (1 << OCIE0)
-000009 bf09      	out TIMSK, temp
+00002d b709      	in temp, TIMSK
+00002e 6002      	ori temp, (1 << OCIE0)
+00002f bf09      	out TIMSK, temp
                  
-00000a b703      	in temp, TCCR0
-00000b 670d      	ori temp, (1 << CS02) | (0 << CS01) | (1 << CS00) | (1 << WGM01) | (1 << WGM00) | (1 << COM01) | (1 << COM00)
-00000c bf03      	out TCCR0, temp
+000030 b703      	in temp, TCCR0
+000031 670d      	ori temp, (1 << CS02) | (0 << CS01) | (1 << CS00) | (1 << WGM01) | (1 << WGM00) | (1 << COM01) | (1 << COM00)
+000032 bf03      	out TCCR0, temp
                  
-00000d ec00      	ldi temp, (1 << PD6) | (1 << PD7)
-00000e bb02      	out PORTD, temp
+000033 ec00      	ldi temp, (1 << PD6) | (1 << PD7)
+000034 bb02      	out PORTD, temp
                  
-00000f e008      	ldi temp, (1 << PB3)
-000010 bb07      	out DDRB, temp
+000035 e008      	ldi temp, (1 << PB3)
+000036 bb07      	out DDRB, temp
                  
-000011 e000      	ldi temp, 0x00
-000012 bf0c      	out OCR0, temp
+000037 ef0f      	ldi temp, 0xFF
+000038 bf0c      	out OCR0, temp
                  
-000013 9478      	sei
-000014 940c 0016 	jmp start
+000039 9478      	sei
+00003a 940c 003f 	jmp start
+                 
+                 timer_compare_match_isr:
+00003c 94f8      	cli
+00003d 9478      	sei
+00003e 9518      	reti
                  
                  start:
-000016 9b86      	sbis PIND, PD6
-000017 940e 001d 	call full_rotation
-000019 9b87      	sbis PIND, PD7
-00001a 940e 0020 	call half_rotation
-00001c cff9      	rjmp start
+00003f 9b86      	sbis PIND, PD6
+000040 940e 0046 	call full_rotation
+000042 9b87      	sbis PIND, PD7
+000043 940e 0049 	call half_rotation
+000045 cff9      	rjmp start
                  
                  full_rotation:
-00001d ef0f      	ldi temp, 0xFF
-00001e bf0c      	out OCR0, temp
-00001f 9508      	ret
+000046 e70f      	ldi temp, 0x7F
+000047 bf0c      	out OCR0, temp
+000048 9508      	ret
                  
                  half_rotation:
-000020 e70f      	ldi temp, 0x7F
-000021 bf0c      	out OCR0, temp
-000022 9508      	ret
+000049 eb0d      	ldi temp, 0xBD
+00004a bf0c      	out OCR0, temp
+00004b 9508      	ret
 
 
 RESOURCE USE INFORMATION
@@ -958,25 +966,25 @@ brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
 brne  :   0 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 call  :   2 cbi   :   0 cbr   :   0 
-clc   :   0 clh   :   0 cli   :   1 cln   :   0 clr   :   0 cls   :   0 
+clc   :   0 clh   :   0 cli   :   2 cln   :   0 clr   :   0 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
 cpi   :   0 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   2 inc   :   0 jmp   :   2 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   2 inc   :   0 jmp   :   3 
 ld    :   0 ldd   :   0 ldi   :   7 lds   :   0 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
 neg   :   0 nop   :   0 or    :   0 ori   :   2 out   :   9 pop   :   0 
-push  :   0 rcall :   0 ret   :   2 reti  :   0 rjmp  :   1 rol   :   0 
+push  :   0 rcall :   0 ret   :   2 reti  :   1 rjmp  :   1 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   2 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
-sei   :   1 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
+sei   :   2 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 11 out of 113 (9.7%)
+Instructions used: 12 out of 113 (10.6%)
 
 "ATmega16" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000046     70      0     70   16384   0.4%
+[.cseg] 0x000000 0x000098     80      0     80   16384   0.5%
 [.dseg] 0x000060 0x000060      0      0      0    1024   0.0%
 [.eseg] 0x000000 0x000000      0      0      0     512   0.0%
 
