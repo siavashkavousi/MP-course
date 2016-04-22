@@ -7,7 +7,7 @@
   <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
   <DIR></DIR>
  </INCLUDE_PATH>
- <SOURCE_FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm</SOURCE_FILE>
+ <SOURCE_FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-2.asm</SOURCE_FILE>
  <INCLUDED_FILES>
   <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.98\avrasm\inc\m16def.inc</FILE>
  </INCLUDED_FILES>
@@ -22,11 +22,11 @@
   <FILE>HW6.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <reset><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm</FILE><LINE>14</LINE></reset>
-  <reset_isr><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm</FILE><LINE>20</LINE></reset_isr>
-  <timer_compare_match_isr><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm</FILE><LINE>47</LINE></timer_compare_match_isr>
-  <start><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm</FILE><LINE>52</LINE></start>
-  <full_rotation><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm</FILE><LINE>59</LINE></full_rotation>
-  <half_rotation><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm</FILE><LINE>64</LINE></half_rotation>
+  <reset><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-2.asm</FILE><LINE>14</LINE></reset>
+  <reset_isr><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-2.asm</FILE><LINE>20</LINE></reset_isr>
+  <timer_compare_match_isr><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-2.asm</FILE><LINE>47</LINE></timer_compare_match_isr>
+  <start><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-2.asm</FILE><LINE>52</LINE></start>
+  <full_rotation><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-2.asm</FILE><LINE>59</LINE></full_rotation>
+  <half_rotation><FILE>C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-2.asm</FILE><LINE>64</LINE></half_rotation>
  </LABELS>
 </ASSEMBLER_INFO>

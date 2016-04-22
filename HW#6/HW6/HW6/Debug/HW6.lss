@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.0  C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-1.asm Fri Apr 22 16:51:10 2016
+AVRASM ver. 2.2.0  C:\Users\siava\Google Drive\Academic Courses\Microprocessors\HW#6\HW6\HW6\Q2-2.asm Fri Apr 22 17:01:08 2016
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.98\avrasm\inc\m16def.inc'
                  
@@ -869,9 +869,9 @@ AVRASM ver. 2.2.0  C:\Users\siava\Google Drive\Academic Courses\Microprocessors\
                  #endif  /* _M16DEF_INC_ */
                  
                  
-                  * Q2_1.asm
+                  * Q2_2.asm
                   *
-                  *  Created: 4/15/2016 12:16:50 PM
+                  *  Created: 4/22/2016 4:52:41 PM
                   *   Author: siavash
                   */ 
                  
@@ -899,7 +899,7 @@ AVRASM ver. 2.2.0  C:\Users\siava\Google Drive\Academic Courses\Microprocessors\
 00002f bf09      	out TIMSK, temp
                  
 000030 b703      	in temp, TCCR0
-000031 670d      	ori temp, (1 << CS02) | (0 << CS01) | (1 << CS00) | (1 << WGM01) | (1 << WGM00) | (1 << COM01) | (1 << COM00)
+000031 6705      	ori temp, (1 << CS02) | (0 << CS01) | (1 << CS00) | (0 << WGM01) | (1 << WGM00) | (1 << COM01) | (1 << COM00)
 000032 bf03      	out TCCR0, temp
                  
 000033 ec00      	ldi temp, (1 << PD6) | (1 << PD7)

@@ -29,7 +29,7 @@ reset_isr:
 	out TIMSK, temp
 
 	in temp, TCCR0
-	ori temp, (1 << CS02) | (0 << CS01) | (1 << CS00) | (1 << WGM01) | (1 << WGM00) | (1 << COM01) | (1 << COM00)
+	ori temp, (1 << CS02) | (0 << CS01) | (1 << CS00) | (0 << WGM01) | (1 << WGM00) | (1 << COM01) | (1 << COM00)
 	out TCCR0, temp
 
 	ldi temp, (1 << PD6) | (1 << PD7)

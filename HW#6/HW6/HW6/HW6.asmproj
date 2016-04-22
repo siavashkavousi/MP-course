@@ -15,7 +15,7 @@
     <Name>HW6</Name>
     <RootNamespace>HW6</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
-    <EntryFile>$(MSBuildProjectDirectory)\Q2-1.asm</EntryFile>
+    <EntryFile>$(MSBuildProjectDirectory)\Q2-2.asm</EntryFile>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
     <CacheFlash>true</CacheFlash>
@@ -74,6 +74,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Q2-1.asm">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Q2-2.asm">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
