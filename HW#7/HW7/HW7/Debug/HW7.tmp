@@ -1,0 +1,31 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.0</VERSION>
+ <DEVICE>"ATmega16"</DEVICE>
+ <WORKING_DIR>C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.98\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\q2.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.98\avrasm\inc\m16def.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\Debug\HW7.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>HW7.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>HW7.map</FILE>
+  <FILE>HW7.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <reset><FILE>C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\q2.asm</FILE><LINE>14</LINE></reset>
+  <reset_isr><FILE>C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\q2.asm</FILE><LINE>21</LINE></reset_isr>
+  <adc_conversion_complete><FILE>C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\q2.asm</FILE><LINE>18</LINE></adc_conversion_complete>
+  <adc_conversion_complete_isr><FILE>C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\q2.asm</FILE><LINE>40</LINE></adc_conversion_complete_isr>
+  <start><FILE>C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\q2.asm</FILE><LINE>49</LINE></start>
+ </LABELS>
+</ASSEMBLER_INFO>
