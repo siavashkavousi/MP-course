@@ -7,6 +7,8 @@
 
 .include "m8_lcd_4bit.inc"
 
+.def number = r20
+
 .org 0x00
 reset:
 	jmp reset_isr
@@ -48,7 +50,10 @@ adc_conversion_complete_isr:
 	// divide z by two
 	rcall divide_by_4
 
-	// print on lcd...
+	// print on lcd
+	rcall LCD_init
+	mov argument, zl
+	rcall convert_hex2ascii_display
 
 	// mast mali :D
 	sbi ADCSRA, ADSC
@@ -65,3 +70,44 @@ divide_by_4:
 
 start:
 	rjmp start
+
+convert_hex2ascii_display:
+	mov number, argument
+	clr local_var
+third_digit:
+	subi number, 100
+	brlo next_step0
+	inc local_var
+	rjmp third_digit
+next_step0:
+	ldi temp, 48
+	add local_var, temp
+	mov argument, local_var
+	rcall display
+	ldi temp, 100
+	add number, temp
+	clr local_var
+two_digit:
+	subi number, 10
+	brlo next_step1
+	inc local_var
+	rjmp two_digit
+next_step1:
+	ldi temp, 48
+	add local_var, temp
+	mov argument, local_var
+	rcall display
+	ldi temp, 10
+	add number, temp
+	clr local_var
+one_digit:
+	ldi temp, 48
+	add number, temp
+	mov argument, number
+	rcall display
+	ret
+
+display:
+	rcall LCD_wait
+	rcall LCD_putchar
+	ret
