@@ -28,7 +28,7 @@ reset_isr:
 	sbi ADMUX, REFS0
 
 	in temp, ADCSRA
-	ori temp, (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0) | (1 << ADATE) | (1 << ADSC) | (1 << ADIE)
+	ori temp, (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0) | (1 << ADSC) | (1 << ADIE) | (1 << ADATE)
 	out ADCSRA, temp
 
 	ldi temp, (0 << ADTS2) | (0 << ADTS1) | (0 << ADTS0)
@@ -41,7 +41,7 @@ adc_conversion_complete_isr:
 	cli
 
 	in temp, ADCL
-	in temp, ADCH
+	in argument, ADCH
 
 	sei
 	reti
