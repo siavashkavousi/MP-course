@@ -50,8 +50,11 @@ adc_conversion_complete_isr:
 	// divide z by two
 	rcall divide_by_4
 
+	// clear display, cursor -> home
+	rcall	LCD_wait
+	ldi	argument, 0x01
+	rcall	LCD_command
 	// print on lcd
-	rcall LCD_init
 	mov argument, zl
 	rcall convert_hex2ascii_display
 
