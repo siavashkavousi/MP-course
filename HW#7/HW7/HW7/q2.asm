@@ -5,10 +5,7 @@
  *   Author: siavash
  */ 
 
-.def temp = r16
-.def argument = r17
-.def return = r18
-.def global_var = r19
+.include "m8_lcd_4bit.inc"
 
 .org 0x00
 reset:
@@ -40,8 +37,7 @@ reset_isr:
 adc_conversion_complete_isr:
 	cli
 
-	in temp, ADCL
-	in argument, ADCH
+	
 
 	sei
 	reti
