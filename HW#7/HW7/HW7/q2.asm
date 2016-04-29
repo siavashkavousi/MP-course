@@ -49,7 +49,6 @@ adc_conversion_complete_isr:
 	mov zh, temp
 	// divide z by two
 	rcall divide_by_4
-
 	// clear display, cursor -> home
 	rcall	LCD_wait
 	ldi	argument, 0x01
@@ -57,6 +56,8 @@ adc_conversion_complete_isr:
 	// print on lcd
 	mov argument, zl
 	rcall convert_hex2ascii_display
+	// do magic :)
+	rcall LCD_delay
 
 	// mast mali :D
 	sbi ADCSRA, ADSC
