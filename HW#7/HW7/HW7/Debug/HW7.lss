@@ -1,7 +1,8 @@
 
-AVRASM ver. 2.2.0  C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\q2.asm Thu Apr 28 15:17:08 2016
+AVRASM ver. 2.2.0  D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm Sat Apr 30 11:55:31 2016
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.98\avrasm\inc\m16def.inc'
+D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm(8): Including file 'D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\m8_lcd_4bit.inc'
                  
                  /*
                  
@@ -875,10 +876,219 @@ AVRASM ver. 2.2.0  C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\q2.asm Th
                   *   Author: siavash
                   */ 
                  
+                 .include "m8_lcd_4bit.inc"
+                 
+                 ;	File:	m8_LCD_4bit.asm
+                 ;      Title:	ATmega8 driver for LCD in 4-bit mode (HD44780)
+                 ;  Assembler:	AVR assembler/AVR Studio
+                 ;    Version:	1.0
+                 ;    Created:	April 5th, 2004
+                 ;     Target:	ATmega8
+                 ; Christoph Redecker, http://www.avrbeginners.net
+                 ;*******************************************************************************
+                 
+                 ; Some notes on the hardware:
+                 ;ATmega8 (clock frequency doesn't matter, tested with 1 MHz to 8 MHz)
+                 ; PORTA.1 -> LCD RS (register select)
+                 ; PORTA.2 -> LCD RW (read/write)
+                 ; PORTA.3 -> LCd E (Enable)
+                 ; PORTA.4 ... PORTA.7 -> LCD data.4 ... data.7
+                 ; the other LCd data lines can be left open or tied to ground.
+                 
+                 .equ LCD_RS	= 1
+                 .equ LCD_RW	= 2
+                 .equ LCD_E = 3
+                 
                  .def temp = r16
-                 .def argument = r17
-                 .def return = r18
-                 .def global_var = r19
+                 .def argument= r17		;argument for calling subroutines
+                 .def return	= r18		;return value from subroutines
+                 .def local_var = r19
+                 
+                 .org 0xF0
+                 lcd_command8:	;used for init (we need some 8-bit commands to switch to 4-bit mode!)
+0000f0 b30a      	in	temp, DDRA		;we need to set the high nibble of DDRA while leaving
+                 					;the other bits untouched. Using temp for that.
+0000f1 6f00      	sbr	temp, 0b11110000	;set high nibble in temp
+0000f2 bb0a      	out	DDRA, temp		;write value to DDRA again
+0000f3 b30b      	in	temp, PORTA		;then get the port value
+0000f4 700f      	cbr	temp, 0b11110000	;and clear the data bits
+0000f5 7f10      	cbr	argument, 0b00001111	;then clear the low nibble of the argument
+                 					;so that no control line bits are overwritten
+0000f6 2b01      	or	temp, argument		;then set the data bits (from the argument) in the
+                 					;Port value
+0000f7 bb0b      	out	PORTA, temp		;and write the port value.
+0000f8 9adb      	sbi	PORTA, LCD_E		;now strobe E
+0000f9 0000      	nop
+0000fa 0000      	nop
+0000fb 0000      	nop
+0000fc 98db      	cbi	PORTA, LCD_E
+0000fd b30a      	in	temp, DDRA		;get DDRA to make the data lines input again
+0000fe 700f      	cbr	temp, 0b11110000	;clear data line direction bits
+0000ff bb0a      	out	DDRA, temp		;and write to DDRA
+000100 9508      ret
+                 
+                 lcd_putchar:
+000101 931f      	push	argument		;save the argmuent (it's destroyed in between)
+000102 b30a      	in	temp, DDRA		;get data direction bits
+000103 6f00      	sbr	temp, 0b11110000	;set the data lines to output
+000104 bb0a      	out	DDRA, temp		;write value to DDRA
+000105 b30b      	in	temp, PORTA		;then get the data from PORTA
+000106 7001      	cbr	temp, 0b11111110	;clear ALL LCD lines (data and control!)
+000107 7f10      	cbr	argument, 0b00001111	;we have to write the high nibble of our argument first
+                 					;so mask off the low nibble
+000108 2b01      	or	temp, argument		;now set the argument bits in the Port value
+000109 bb0b      	out	PORTA, temp		;and write the port value
+00010a 9ad9      	sbi	PORTA, LCD_RS		;now take RS high for LCD char data register access
+00010b 9adb      	sbi	PORTA, LCD_E		;strobe Enable
+00010c 0000      	nop
+00010d 0000      	nop
+00010e 0000      	nop
+00010f 98db      	cbi	PORTA, LCD_E
+000110 911f      	pop	argument		;restore the argument, we need the low nibble now...
+000111 700f      	cbr	temp, 0b11110000	;clear the data bits of our port value
+000112 9512      	swap	argument		;we want to write the LOW nibble of the argument to
+                 					;the LCD data lines, which are the HIGH port nibble!
+000113 7f10      	cbr	argument, 0b00001111	;clear unused bits in argument
+000114 2b01      	or	temp, argument		;and set the required argument bits in the port value
+000115 bb0b      	out	PORTA, temp		;write data to port
+000116 9ad9      	sbi	PORTA, LCD_RS		;again, set RS
+000117 9adb      	sbi	PORTA, LCD_E		;strobe Enable
+000118 0000      	nop
+000119 0000      	nop
+00011a 0000      	nop
+00011b 98db      	cbi	PORTA, LCD_E
+00011c 98d9      	cbi	PORTA, LCD_RS
+00011d b30a      	in	temp, DDRA
+00011e 700f      	cbr	temp, 0b11110000	;data lines are input again
+00011f bb0a      	out	DDRA, temp
+000120 9508      ret
+                 
+                 lcd_command:	;same as LCD_putchar, but with RS low!
+000121 931f      	push	argument
+000122 b30a      	in	temp, DDRA
+000123 6f00      	sbr	temp, 0b11110000
+000124 bb0a      	out	DDRA, temp
+000125 b30b      	in	temp, PORTA
+000126 7001      	cbr	temp, 0b11111110
+000127 7f10      	cbr	argument, 0b00001111
+000128 2b01      	or	temp, argument
+                 
+000129 bb0b      	out	PORTA, temp
+00012a 9adb      	sbi	PORTA, LCD_E
+00012b 0000      	nop
+00012c 0000      	nop
+00012d 0000      	nop
+00012e 98db      	cbi	PORTA, LCD_E
+00012f 911f      	pop	argument
+000130 700f      	cbr	temp, 0b11110000
+000131 9512      	swap	argument
+000132 7f10      	cbr	argument, 0b00001111
+000133 2b01      	or	temp, argument
+000134 bb0b      	out	PORTA, temp
+000135 9adb      	sbi	PORTA, LCD_E
+000136 0000      	nop
+000137 0000      	nop
+000138 0000      	nop
+000139 98db      	cbi	PORTA, LCD_E
+00013a b30a      	in	temp, DDRA
+00013b 700f      	cbr	temp, 0b11110000
+00013c bb0a      	out	DDRA, temp
+00013d 9508      ret
+                 
+                 LCD_getchar:
+00013e b30a      	in	temp, DDRA		;make sure the data lines are inputs
+00013f 700f      	andi	temp, 0b00001111	;so clear their DDR bits
+000140 bb0a      	out	DDRA, temp
+000141 9ad9      	sbi	PORTA, LCD_RS		;we want to access the char data register, so RS high
+000142 9ada      	sbi	PORTA, LCD_RW		;we also want to read from the LCD -> RW high
+000143 9adb      	sbi	PORTA, LCD_E		;while E is high
+000144 0000      	nop
+000145 b309      	in	temp, PINA		;we need to fetch the HIGH nibble
+000146 7f00      	andi	temp, 0b11110000	;mask off the control line data
+000147 2f20      	mov	return, temp		;and copy the HIGH nibble to return
+000148 98db      	cbi	PORTA, LCD_E		;now take E low again
+000149 0000      	nop				;wait a bit before strobing E again
+00014a 0000      	nop	
+00014b 9adb      	sbi	PORTA, LCD_E		;same as above, now we're reading the low nibble
+00014c 0000      	nop
+00014d b309      	in	temp, PINA		;get the data
+00014e 7f00      	andi	temp, 0b11110000	;and again mask off the control line bits
+00014f 9502      	swap	temp			;temp HIGH nibble contains data LOW nibble! so swap
+000150 2b20      	or	return, temp		;and combine with previously read high nibble
+000151 98db      	cbi	PORTA, LCD_E		;take all control lines low again
+000152 98d9      	cbi	PORTA, LCD_RS
+000153 98da      	cbi	PORTA, LCD_RW
+000154 9508      ret					;the character read from the LCD is now in return
+                 
+                 LCD_getaddr:	;works just like LCD_getchar, but with RS low, return.7 is the busy flag
+000155 b30a      	in	temp, DDRA
+000156 700f      	andi	temp, 0b00001111
+000157 bb0a      	out	DDRA, temp
+000158 98d9      	cbi	PORTA, LCD_RS
+000159 9ada      	sbi	PORTA, LCD_RW
+00015a 9adb      	sbi	PORTA, LCD_E
+00015b 0000      	nop
+00015c b309      	in	temp, PINA
+00015d 7f00      	andi	temp, 0b11110000
+00015e 2f20      	mov	return, temp
+00015f 98db      	cbi	PORTA, LCD_E
+000160 0000      	nop
+000161 0000      	nop
+000162 9adb      	sbi	PORTA, LCD_E
+000163 0000      	nop
+000164 b309      	in	temp, PINA
+000165 7f00      	andi	temp, 0b11110000
+000166 9502      	swap	temp
+000167 2b20      	or	return, temp
+000168 98db      	cbi	PORTA, LCD_E
+000169 98da      	cbi	PORTA, LCD_RW
+00016a 9508      ret
+                 
+                 LCD_wait:				;read address and busy flag until busy flag cleared
+00016b dfe9      	rcall	LCD_getaddr
+00016c 7820      	andi	return, 0x80
+00016d f7e9      	brne	LCD_wait
+00016e 9508      	ret
+                 
+                 
+                 LCD_delay:
+00016f 2422      	clr	r2
+                 	LCD_delay_outer:
+000170 2433      	clr	r3
+                 		LCD_delay_inner:
+000171 943a      		dec	r3
+000172 f7f1      		brne	LCD_delay_inner
+000173 942a      	dec	r2
+000174 f7d9      	brne	LCD_delay_outer
+000175 9508      ret
+                 
+                 LCD_init:
+                 	
+000176 e00e      	ldi	temp, 0b00001110	;control lines are output, rest is input
+000177 bb0a      	out	DDRA, temp
+                 	
+000178 dff6      	rcall	LCD_delay		;first, we'll tell the LCD that we want to use it
+000179 e210      	ldi	argument, 0x20		;in 4-bit mode.
+00017a df75      	rcall	LCD_command8		;LCD is still in 8-BIT MODE while writing this command!!!
+                 
+00017b dfef      	rcall	LCD_wait
+00017c e218      	ldi	argument, 0x28		;NOW: 2 lines, 5*7 font, 4-BIT MODE!
+00017d dfa3      	rcall	LCD_command		;
+                 	
+00017e dfec      	rcall	LCD_wait
+00017f e01f      	ldi	argument, 0x0F		;now proceed as usual: Display on, cursor on, blinking
+000180 dfa0      	rcall	LCD_command
+                 	
+000181 dfe9      	rcall	LCD_wait
+000182 e011      	ldi	argument, 0x01		;clear display, cursor -> home
+000183 df9d      	rcall	LCD_command
+                 	
+000184 dfe6      	rcall	LCD_wait
+000185 e016      	ldi	argument, 0x06		;auto-inc cursor
+000186 df9a      	rcall	LCD_command
+000187 9508      
+                 .def number = r20
+                 .def global_var = r21
                  
                  .org 0x00
                  reset:
@@ -886,7 +1096,7 @@ AVRASM ver. 2.2.0  C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\q2.asm Th
                  
                  .org 0x1C
                  adc_conversion_complete:
-00001c 940c 002c 	jmp adc_conversion_complete_isr
+00001c 940c 003a 	jmp adc_conversion_complete_isr
                  
                  reset_isr:
 00001e 94f8      	cli
@@ -895,30 +1105,109 @@ AVRASM ver. 2.2.0  C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\q2.asm Th
 000021 e014      	ldi r17, HIGH(RAMEND)
 000022 bf1e      	out SPH, r17
                  
-000023 9a3e      	sbi ADMUX, REFS0
+000023 b107      	in temp, ADMUX
+000024 6c00      	ori temp, (1 <<REFS1) | (1 << REFS0)
+000025 b907      	out ADMUX, temp
                  
-000024 b106      	in temp, ADCSRA
-000025 6e0f      	ori temp, (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0) | (1 << ADATE) | (1 << ADSC) | (1 << ADIE)
-000026 b906      	out ADCSRA, temp
+000026 b106      	in temp, ADCSRA
+000027 6e0f      	ori temp, (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0) | (1 << ADSC) | (1 << ADIE) | (1 << ADATE)
+000028 b906      	out ADCSRA, temp
                  
-000027 e000      	ldi temp, (0 << ADTS2) | (0 << ADTS1) | (0 << ADTS0)
-000028 bf00      	out SFIOR, temp
+000029 e000      	ldi temp, (0 << ADTS2) | (0 << ADTS1) | (0 << ADTS0)
+00002a bf00      	out SFIOR, temp
                  
-000029 9478      	sei
-00002a 940c 0031 	jmp start
+00002b d14a      	rcall LCD_init
+                 
+                 	// set sleep mode to ADC noise reduction
+00002c b705      	in temp, MCUCR
+00002d 6100      	ori temp, (0 << SM2) | (0 << SM1) | (1 << SM0)
+00002e bf05      	out MCUCR, temp
+                 	// enable, start and disable
+00002f b705      	in temp, MCUCR
+000030 6400      	ori temp, (1 << SE)
+000031 bf05      	out MCUCR, temp
+000032 9478      	sei
+000033 9588      	sleep
+000034 b705      	in temp, MCUCR
+000035 6000      	ori temp, (0 << SE)
+000036 bf05      	out MCUCR, temp
+                 
+000037 9478      	sei
+000038 940c 004e 	jmp start
                  
                  adc_conversion_complete_isr:
-00002c 94f8      	cli
+00003a 94f8      	cli
+00003b b104      	in temp, ADCL
+00003c 2fe0      	mov zl, temp
+00003d b105      	in temp, ADCH
+00003e 2ff0      	mov zh, temp
+                 	// divide z by two
+00003f d009      	rcall divide_by_4
                  
-00002d b104      	in temp, ADCL
-00002e b105      	in temp, ADCH
+                 	// clear display, cursor -> home
+000040 d12a      	rcall	LCD_wait
+000041 e011      	ldi	argument, 0x01
+000042 d0de      	rcall	LCD_command
+                 	// print on lcd
+000043 2f1e      	mov argument, zl
+000044 d00a      	rcall convert_hex2ascii_display
+                 	// do magic :)
+000045 d129      	rcall LCD_delay
                  
-00002f 9478      	sei
-000030 9518      	reti
+                 	// mast mali :D
+000046 9a36      	sbi ADCSRA, ADSC
+000047 9478      	sei
+000048 9518      	reti
+                 
+                 divide_by_4:
+000049 95f5      	asr zh
+00004a 95e7      	ror zl
+00004b 95f5      	asr zh
+00004c 95e7      	ror zl
+00004d 9508      	ret
                  
                  start:
-000031 cfff      	rjmp start
+00004e cfff      	rjmp start
                  
+                 convert_hex2ascii_display:
+00004f 2f41      	mov number, argument
+000050 2733      	clr local_var
+                 third_digit:
+000051 5644      	subi number, 100
+000052 f010      	brlo next_step0
+000053 9533      	inc local_var
+000054 cffc      	rjmp third_digit
+                 next_step0:
+000055 e300      	ldi temp, 48
+000056 0f30      	add local_var, temp
+000057 2f13      	mov argument, local_var
+000058 d013      	rcall display
+000059 e604      	ldi temp, 100
+00005a 0f40      	add number, temp
+00005b 2733      	clr local_var
+                 two_digit:
+00005c 504a      	subi number, 10
+00005d f010      	brlo next_step1
+00005e 9533      	inc local_var
+00005f cffc      	rjmp two_digit
+                 next_step1:
+000060 e300      	ldi temp, 48
+000061 0f30      	add local_var, temp
+000062 2f13      	mov argument, local_var
+000063 d008      	rcall display
+000064 e00a      	ldi temp, 10
+000065 0f40      	add number, temp
+000066 2733      	clr local_var
+                 one_digit:
+000067 e300      	ldi temp, 48
+000068 0f40      	add number, temp
+000069 2f14      	mov argument, number
+00006a d001      	rcall display
+00006b 9508      	ret
+                 
+                 display:
+00006c d0fe      	rcall LCD_wait
+00006d d093      	rcall LCD_putchar
 
 
 RESOURCE USE INFORMATION
@@ -936,39 +1225,39 @@ counted separately from r26..r31 here.
 .dseg memory usage only counts static data declared with .byte
 
 "ATmega16" register use summary:
-x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
+x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   2 r3 :   2 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:   9 r17:   2 r18:   0 r19:   0 r20:   0 
+r13:   0 r14:   0 r15:   0 r16:  91 r17:  29 r18:   5 r19:   9 r20:   7 
 r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
-r29:   0 r30:   0 r31:   0 
-Registers used: 2 out of 35 (5.7%)
+r29:   0 r30:   4 r31:   3 
+Registers used: 9 out of 35 (25.7%)
 
 "ATmega16" instruction use summary:
-.lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
-andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
+.lds  :   0 .sts  :   0 adc   :   0 add   :   5 adiw  :   0 and   :   0 
+andi  :   7 asr   :   2 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
 brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
-brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
-brne  :   0 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   0 cbr   :   0 
-clc   :   0 clh   :   0 cli   :   2 cln   :   0 clr   :   0 cls   :   0 
+brhs  :   0 brid  :   0 brie  :   0 brlo  :   2 brlt  :   0 brmi  :   0 
+brne  :   3 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :  14 cbr   :  13 
+clc   :   0 clh   :   0 cli   :   2 cln   :   0 clr   :   5 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   0 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   3 inc   :   0 jmp   :   3 
-ld    :   0 ldd   :   0 ldi   :   3 lds   :   0 lpm   :   0 lsl   :   0 
-lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   1 out   :   4 pop   :   0 
-push  :   0 rcall :   0 ret   :   0 reti  :   1 rjmp  :   1 rol   :   0 
-ror   :   0 sbc   :   0 sbci  :   0 sbi   :   1 sbic  :   0 sbis  :   0 
-sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
-sei   :   2 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
-sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
-sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 10 out of 113 (8.8%)
+cpi   :   0 cpse  :   0 dec   :   2 eor   :   0 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :  22 inc   :   2 jmp   :   3 
+ld    :   0 ldd   :   0 ldi   :  15 lds   :   0 lpm   :   0 lsl   :   0 
+lsr   :   0 mov   :   9 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
+neg   :   0 nop   :  23 or    :   7 ori   :   5 out   :  22 pop   :   2 
+push  :   2 rcall :  22 ret   :  11 reti  :   1 rjmp  :   3 rol   :   0 
+ror   :   2 sbc   :   0 sbci  :   0 sbi   :  15 sbic  :   0 sbis  :   0 
+sbiw  :   0 sbr   :   3 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
+sei   :   3 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
+sez   :   0 sleep :   1 spm   :   0 st    :   0 std   :   0 sts   :   0 
+sub   :   0 subi  :   2 swap  :   4 tst   :   0 wdr   :   0 
+Instructions used: 32 out of 113 (28.3%)
 
 "ATmega16" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000064     48      0     48   16384   0.3%
+[.cseg] 0x000000 0x000310    474      0    474   16384   2.9%
 [.dseg] 0x000060 0x000060      0      0      0    1024   0.0%
 [.eseg] 0x000000 0x000000      0      0      0     512   0.0%
 

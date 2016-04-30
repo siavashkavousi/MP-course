@@ -1,18 +1,19 @@
 <ASSEMBLER_INFO>
  <VERSION>2.2.0</VERSION>
  <DEVICE>"ATmega16"</DEVICE>
- <WORKING_DIR>C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\Debug</WORKING_DIR>
+ <WORKING_DIR>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\Debug</WORKING_DIR>
  <INCLUDE_PATH>
   <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.98\avrasm\inc</DIR>
   <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
   <DIR></DIR>
  </INCLUDE_PATH>
- <SOURCE_FILE>C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\q2.asm</SOURCE_FILE>
+ <SOURCE_FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm</SOURCE_FILE>
  <INCLUDED_FILES>
   <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.98\avrasm\inc\m16def.inc</FILE>
+  <FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\m8_lcd_4bit.inc</FILE>
  </INCLUDED_FILES>
  <OBJECT_FILES>
-  <FILE>C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\Debug\HW7.obj</FILE>
+  <FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\Debug\HW7.obj</FILE>
  </OBJECT_FILES>
  <HEX_FILES>
   <FILE>HW7.hex</FILE>
@@ -22,10 +23,28 @@
   <FILE>HW7.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <reset><FILE>C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\q2.asm</FILE><LINE>14</LINE></reset>
-  <reset_isr><FILE>C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\q2.asm</FILE><LINE>21</LINE></reset_isr>
-  <adc_conversion_complete><FILE>C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\q2.asm</FILE><LINE>18</LINE></adc_conversion_complete>
-  <adc_conversion_complete_isr><FILE>C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\q2.asm</FILE><LINE>40</LINE></adc_conversion_complete_isr>
-  <start><FILE>C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\q2.asm</FILE><LINE>49</LINE></start>
+  <lcd_command8><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\m8_lcd_4bit.inc</FILE><LINE>29</LINE></lcd_command8>
+  <lcd_putchar><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\m8_lcd_4bit.inc</FILE><LINE>51</LINE></lcd_putchar>
+  <lcd_command><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\m8_lcd_4bit.inc</FILE><LINE>87</LINE></lcd_command>
+  <LCD_getchar><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\m8_lcd_4bit.inc</FILE><LINE>119</LINE></LCD_getchar>
+  <LCD_getaddr><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\m8_lcd_4bit.inc</FILE><LINE>144</LINE></LCD_getaddr>
+  <LCD_wait><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\m8_lcd_4bit.inc</FILE><LINE>168</LINE></LCD_wait>
+  <LCD_delay><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\m8_lcd_4bit.inc</FILE><LINE>175</LINE></LCD_delay>
+  <LCD_delay_outer><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\m8_lcd_4bit.inc</FILE><LINE>177</LINE></LCD_delay_outer>
+  <LCD_delay_inner><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\m8_lcd_4bit.inc</FILE><LINE>179</LINE></LCD_delay_inner>
+  <LCD_init><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\m8_lcd_4bit.inc</FILE><LINE>186</LINE></LCD_init>
+  <reset><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm</FILE><LINE>14</LINE></reset>
+  <reset_isr><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm</FILE><LINE>21</LINE></reset_isr>
+  <adc_conversion_complete><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm</FILE><LINE>18</LINE></adc_conversion_complete>
+  <adc_conversion_complete_isr><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm</FILE><LINE>58</LINE></adc_conversion_complete_isr>
+  <start><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm</FILE><LINE>89</LINE></start>
+  <divide_by_4><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm</FILE><LINE>82</LINE></divide_by_4>
+  <convert_hex2ascii_display><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm</FILE><LINE>92</LINE></convert_hex2ascii_display>
+  <third_digit><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm</FILE><LINE>95</LINE></third_digit>
+  <next_step0><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm</FILE><LINE>100</LINE></next_step0>
+  <display><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm</FILE><LINE>128</LINE></display>
+  <two_digit><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm</FILE><LINE>108</LINE></two_digit>
+  <next_step1><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm</FILE><LINE>113</LINE></next_step1>
+  <one_digit><FILE>D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm</FILE><LINE>121</LINE></one_digit>
  </LABELS>
 </ASSEMBLER_INFO>

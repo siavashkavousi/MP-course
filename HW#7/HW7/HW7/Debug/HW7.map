@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.0  C:\Users\siavash\Documents\Atmel Studio\7.0\HW7\HW7\q2.asm Thu Apr 28 15:17:08 2016
+AVRASM ver. 2.2.0  D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm Sat Apr 30 11:55:31 2016
 
 
 EQU  SIGNATURE_000 0000001e
@@ -604,12 +604,35 @@ EQU  INT2addr     00000024
 EQU  OC0addr      00000026
 EQU  SPMRaddr     00000028
 EQU  INT_VECTORS_SIZE 0000002a
+EQU  LCD_RS       00000001
+EQU  LCD_RW       00000002
+EQU  LCD_E        00000003
 DEF  temp         r16
 DEF  argument     r17
 DEF  return       r18
-DEF  global_var   r19
+DEF  local_var    r19
+CSEG lcd_command8 000000f0
+CSEG lcd_putchar  00000101
+CSEG lcd_command  00000121
+CSEG LCD_getchar  0000013e
+CSEG LCD_getaddr  00000155
+CSEG LCD_wait     0000016b
+CSEG LCD_delay    0000016f
+CSEG LCD_delay_outer 00000170
+CSEG LCD_delay_inner 00000171
+CSEG LCD_init     00000176
+DEF  number       r20
+DEF  global_var   r21
 CSEG reset        00000000
 CSEG reset_isr    0000001e
 CSEG adc_conversion_complete 0000001c
-CSEG adc_conversion_complete_isr 0000002c
-CSEG start        00000031
+CSEG adc_conversion_complete_isr 0000003a
+CSEG start        0000004e
+CSEG divide_by_4  00000049
+CSEG convert_hex2ascii_display 0000004f
+CSEG third_digit  00000051
+CSEG next_step0   00000055
+CSEG display      0000006c
+CSEG two_digit    0000005c
+CSEG next_step1   00000060
+CSEG one_digit    00000067
