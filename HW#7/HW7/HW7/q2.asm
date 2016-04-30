@@ -8,6 +8,7 @@
 .include "m8_lcd_4bit.inc"
 
 .def number = r20
+.def global_var = r21
 
 .org 0x00
 reset:
@@ -37,18 +38,32 @@ reset_isr:
 
 	rcall LCD_init
 
+	// set sleep mode to ADC noise reduction
+	in temp, MCUCR
+	ori temp, (0 << SM2) | (0 << SM1) | (1 << SM0)
+	out MCUCR, temp
+	// enable, start and disable
+	in temp, MCUCR
+	ori temp, (1 << SE)
+	out MCUCR, temp
+	sei
+	sleep
+	in temp, MCUCR
+	ori temp, (0 << SE)
+	out MCUCR, temp
+
 	sei
 	jmp start
 
 adc_conversion_complete_isr:
 	cli
-
 	in temp, ADCL
 	mov zl, temp
 	in temp, ADCH
 	mov zh, temp
 	// divide z by two
 	rcall divide_by_4
+
 	// clear display, cursor -> home
 	rcall	LCD_wait
 	ldi	argument, 0x01
@@ -61,7 +76,6 @@ adc_conversion_complete_isr:
 
 	// mast mali :D
 	sbi ADCSRA, ADSC
-
 	sei
 	reti
 
