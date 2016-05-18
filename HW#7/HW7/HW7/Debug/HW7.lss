@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.0  D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm Sat Apr 30 11:55:31 2016
+AVRASM ver. 2.2.0  D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm Sat Apr 30 23:16:58 2016
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.98\avrasm\inc\m16def.inc'
 D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm(8): Including file 'D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\m8_lcd_4bit.inc'
@@ -1096,7 +1096,7 @@ D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm(8): Includin
                  
                  .org 0x1C
                  adc_conversion_complete:
-00001c 940c 003a 	jmp adc_conversion_complete_isr
+00001c 940c 0032 	jmp adc_conversion_complete_isr
                  
                  reset_isr:
 00001e 94f8      	cli
@@ -1110,7 +1110,7 @@ D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm(8): Includin
 000025 b907      	out ADMUX, temp
                  
 000026 b106      	in temp, ADCSRA
-000027 6e0f      	ori temp, (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0) | (1 << ADSC) | (1 << ADIE) | (1 << ADATE)
+000027 680f      	ori temp, (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0) | (1 << ADIE)
 000028 b906      	out ADCSRA, temp
                  
 000029 e000      	ldi temp, (0 << ADTS2) | (0 << ADTS1) | (0 << ADTS0)
@@ -1122,92 +1122,95 @@ D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm(8): Includin
 00002c b705      	in temp, MCUCR
 00002d 6100      	ori temp, (0 << SM2) | (0 << SM1) | (1 << SM0)
 00002e bf05      	out MCUCR, temp
-                 	// enable, start and disable
-00002f b705      	in temp, MCUCR
-000030 6400      	ori temp, (1 << SE)
-000031 bf05      	out MCUCR, temp
-000032 9478      	sei
-000033 9588      	sleep
-000034 b705      	in temp, MCUCR
-000035 6000      	ori temp, (0 << SE)
-000036 bf05      	out MCUCR, temp
                  
-000037 9478      	sei
-000038 940c 004e 	jmp start
+00002f 9478      	sei
+000030 940c 0046 	jmp start
                  
                  adc_conversion_complete_isr:
-00003a 94f8      	cli
-00003b b104      	in temp, ADCL
-00003c 2fe0      	mov zl, temp
-00003d b105      	in temp, ADCH
-00003e 2ff0      	mov zh, temp
+000032 94f8      	cli
+000033 b104      	in temp, ADCL
+000034 2fe0      	mov zl, temp
+000035 b105      	in temp, ADCH
+000036 2ff0      	mov zh, temp
                  	// divide z by two
-00003f d009      	rcall divide_by_4
+000037 d009      	rcall divide_by_4
                  
                  	// clear display, cursor -> home
-000040 d12a      	rcall	LCD_wait
-000041 e011      	ldi	argument, 0x01
-000042 d0de      	rcall	LCD_command
+000038 d132      	rcall	LCD_wait
+000039 e011      	ldi	argument, 0x01
+00003a d0e6      	rcall	LCD_command
                  	// print on lcd
-000043 2f1e      	mov argument, zl
-000044 d00a      	rcall convert_hex2ascii_display
+00003b 2f1e      	mov argument, zl
+00003c d015      	rcall convert_hex2ascii_display
                  	// do magic :)
-000045 d129      	rcall LCD_delay
+00003d d131      	rcall LCD_delay
                  
                  	// mast mali :D
-000046 9a36      	sbi ADCSRA, ADSC
-000047 9478      	sei
-000048 9518      	reti
+00003e 9a36      	sbi ADCSRA, ADSC
+00003f 9478      	sei
+000040 9518      	reti
                  
                  divide_by_4:
-000049 95f5      	asr zh
-00004a 95e7      	ror zl
-00004b 95f5      	asr zh
-00004c 95e7      	ror zl
-00004d 9508      	ret
+000041 95f5      	asr zh
+000042 95e7      	ror zl
+000043 95f5      	asr zh
+000044 95e7      	ror zl
+000045 9508      	ret
                  
                  start:
-00004e cfff      	rjmp start
+000046 94f8      	cli
+000047 9a36      	sbi ADCSRA, ADSC
+                 	// enable, start and disable
+000048 b705      	in temp, MCUCR
+000049 6400      	ori temp, (1 << SE)
+00004a bf05      	out MCUCR, temp
+00004b 9478      	sei
+00004c 9588      	sleep
+00004d b705      	in temp, MCUCR
+00004e 6000      	ori temp, (0 << SE)
+00004f bf05      	out MCUCR, temp
+000050 9478      	sei
+000051 cff4      	rjmp start
                  
                  convert_hex2ascii_display:
-00004f 2f41      	mov number, argument
-000050 2733      	clr local_var
+000052 2f41      	mov number, argument
+000053 2733      	clr local_var
                  third_digit:
-000051 5644      	subi number, 100
-000052 f010      	brlo next_step0
-000053 9533      	inc local_var
-000054 cffc      	rjmp third_digit
+000054 5644      	subi number, 100
+000055 f010      	brlo next_step0
+000056 9533      	inc local_var
+000057 cffc      	rjmp third_digit
                  next_step0:
-000055 e300      	ldi temp, 48
-000056 0f30      	add local_var, temp
-000057 2f13      	mov argument, local_var
-000058 d013      	rcall display
-000059 e604      	ldi temp, 100
-00005a 0f40      	add number, temp
-00005b 2733      	clr local_var
+000058 e300      	ldi temp, 48
+000059 0f30      	add local_var, temp
+00005a 2f13      	mov argument, local_var
+00005b d013      	rcall display
+00005c e604      	ldi temp, 100
+00005d 0f40      	add number, temp
+00005e 2733      	clr local_var
                  two_digit:
-00005c 504a      	subi number, 10
-00005d f010      	brlo next_step1
-00005e 9533      	inc local_var
-00005f cffc      	rjmp two_digit
+00005f 504a      	subi number, 10
+000060 f010      	brlo next_step1
+000061 9533      	inc local_var
+000062 cffc      	rjmp two_digit
                  next_step1:
-000060 e300      	ldi temp, 48
-000061 0f30      	add local_var, temp
-000062 2f13      	mov argument, local_var
-000063 d008      	rcall display
-000064 e00a      	ldi temp, 10
-000065 0f40      	add number, temp
-000066 2733      	clr local_var
-                 one_digit:
-000067 e300      	ldi temp, 48
+000063 e300      	ldi temp, 48
+000064 0f30      	add local_var, temp
+000065 2f13      	mov argument, local_var
+000066 d008      	rcall display
+000067 e00a      	ldi temp, 10
 000068 0f40      	add number, temp
-000069 2f14      	mov argument, number
-00006a d001      	rcall display
-00006b 9508      	ret
+000069 2733      	clr local_var
+                 one_digit:
+00006a e300      	ldi temp, 48
+00006b 0f40      	add number, temp
+00006c 2f14      	mov argument, number
+00006d d001      	rcall display
+00006e 9508      	ret
                  
                  display:
-00006c d0fe      	rcall LCD_wait
-00006d d093      	rcall LCD_putchar
+00006f d0fb      	rcall LCD_wait
+000070 d090      	rcall LCD_putchar
 
 
 RESOURCE USE INFORMATION
@@ -1239,7 +1242,7 @@ brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   2 brlt  :   0 brmi  :   0 
 brne  :   3 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :  14 cbr   :  13 
-clc   :   0 clh   :   0 cli   :   2 cln   :   0 clr   :   5 cls   :   0 
+clc   :   0 clh   :   0 cli   :   3 cln   :   0 clr   :   5 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
 cpi   :   0 cpse  :   0 dec   :   2 eor   :   0 fmul  :   0 fmuls :   0 
 fmulsu:   0 icall :   0 ijmp  :   0 in    :  22 inc   :   2 jmp   :   3 
@@ -1247,9 +1250,9 @@ ld    :   0 ldd   :   0 ldi   :  15 lds   :   0 lpm   :   0 lsl   :   0
 lsr   :   0 mov   :   9 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
 neg   :   0 nop   :  23 or    :   7 ori   :   5 out   :  22 pop   :   2 
 push  :   2 rcall :  22 ret   :  11 reti  :   1 rjmp  :   3 rol   :   0 
-ror   :   2 sbc   :   0 sbci  :   0 sbi   :  15 sbic  :   0 sbis  :   0 
+ror   :   2 sbc   :   0 sbci  :   0 sbi   :  16 sbic  :   0 sbis  :   0 
 sbiw  :   0 sbr   :   3 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
-sei   :   3 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
+sei   :   4 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   0 sleep :   1 spm   :   0 st    :   0 std   :   0 sts   :   0 
 sub   :   0 subi  :   2 swap  :   4 tst   :   0 wdr   :   0 
 Instructions used: 32 out of 113 (28.3%)
@@ -1257,7 +1260,7 @@ Instructions used: 32 out of 113 (28.3%)
 "ATmega16" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000310    474      0    474   16384   2.9%
+[.cseg] 0x000000 0x000310    480      0    480   16384   2.9%
 [.dseg] 0x000060 0x000060      0      0      0    1024   0.0%
 [.eseg] 0x000000 0x000000      0      0      0     512   0.0%
 

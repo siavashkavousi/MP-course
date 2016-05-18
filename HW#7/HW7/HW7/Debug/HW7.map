@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.0  D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm Sat Apr 30 11:55:31 2016
+AVRASM ver. 2.2.0  D:\GoogleDrive\Academic Courses\Microprocessors\HW#7\HW7\HW7\q2.asm Sat Apr 30 23:16:58 2016
 
 
 EQU  SIGNATURE_000 0000001e
@@ -626,13 +626,13 @@ DEF  global_var   r21
 CSEG reset        00000000
 CSEG reset_isr    0000001e
 CSEG adc_conversion_complete 0000001c
-CSEG adc_conversion_complete_isr 0000003a
-CSEG start        0000004e
-CSEG divide_by_4  00000049
-CSEG convert_hex2ascii_display 0000004f
-CSEG third_digit  00000051
-CSEG next_step0   00000055
-CSEG display      0000006c
-CSEG two_digit    0000005c
-CSEG next_step1   00000060
-CSEG one_digit    00000067
+CSEG adc_conversion_complete_isr 00000032
+CSEG start        00000046
+CSEG divide_by_4  00000041
+CSEG convert_hex2ascii_display 00000052
+CSEG third_digit  00000054
+CSEG next_step0   00000058
+CSEG display      0000006f
+CSEG two_digit    0000005f
+CSEG next_step1   00000063
+CSEG one_digit    0000006a

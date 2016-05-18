@@ -30,7 +30,7 @@ reset_isr:
 	out ADMUX, temp
 
 	in temp, ADCSRA
-	ori temp, (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0) | (1 << ADSC) | (1 << ADIE) | (1 << ADATE)
+	ori temp, (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0) | (1 << ADIE)
 	out ADCSRA, temp
 
 	ldi temp, (0 << ADTS2) | (0 << ADTS1) | (0 << ADTS0)
@@ -41,15 +41,6 @@ reset_isr:
 	// set sleep mode to ADC noise reduction
 	in temp, MCUCR
 	ori temp, (0 << SM2) | (0 << SM1) | (1 << SM0)
-	out MCUCR, temp
-	// enable, start and disable
-	in temp, MCUCR
-	ori temp, (1 << SE)
-	out MCUCR, temp
-	sei
-	sleep
-	in temp, MCUCR
-	ori temp, (0 << SE)
 	out MCUCR, temp
 
 	sei
@@ -87,6 +78,18 @@ divide_by_4:
 	ret
 
 start:
+	cli
+	sbi ADCSRA, ADSC
+	// enable, start and disable
+	in temp, MCUCR
+	ori temp, (1 << SE)
+	out MCUCR, temp
+	sei
+	sleep
+	in temp, MCUCR
+	ori temp, (0 << SE)
+	out MCUCR, temp
+	sei
 	rjmp start
 
 convert_hex2ascii_display:
