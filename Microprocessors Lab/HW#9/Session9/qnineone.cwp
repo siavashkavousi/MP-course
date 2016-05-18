@@ -81,11 +81,11 @@ INT7Mode=0
 PCMSK=0
 [Timer0]
 T0ClkSource=0
-T0Prescaler=5
+T0Prescaler=0
 T0Mode=0
 T0Output=0
 T0OutputB=0
-T0OverflowInt=1
+T0OverflowInt=0
 T0CaptureInt=0
 T0CompareInt=0
 T0CompareBInt=0
@@ -483,7 +483,7 @@ CANTimerClock=0
 [AlphanumericLCD]
 Enabled=1
 Controller=0
-AlphanumericLCDCharsPerLineIndex=2
+AlphanumericLCDCharsPerLineIndex=0
 AlphanumericLCDRSPort=2
 AlphanumericLCDRSBit=3
 AlphanumericLCDRDPort=3
@@ -513,7 +513,7 @@ DS1302ChargeResistor=0
 [ProjectInformation]
 ProjectName=
 ProjectVersion=
-ProjectDate=4/24/2016
+ProjectDate=04/24/2016
 ProjectAuthor=
 ProjectCompany=
 CommentLines=0

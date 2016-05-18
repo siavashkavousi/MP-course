@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>6.1</ProjectVersion>
     <ToolchainName>com.HPInfoTech.CodeVisionAVR.C</ToolchainName>
-    <ProjectGuid>{95CC28B4-423D-497C-A76A-A46C3F34E8A0}</ProjectGuid>
+    <ProjectGuid>{DEAF9EEB-423D-497C-A76A-A46C3F34E8A0}</ProjectGuid>
     <avrdevice>ATmega32</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
     <OutputType>Executable</OutputType>

@@ -1,0 +1,35 @@
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+_base_y                                                                           0x0291       4
+
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+
+Register Allocation
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+_lcd_x                                                                            R5           1
+_lcd_y                                                                            R4           1
+_lcd_maxx                                                                         R7           1
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+key_find                                                                          0x0007E     22
+key_find_print                                                                    0x00094     91
+clear_portb                                                                       0x000EF      3
+ext_int0_isr                                                                      0x000F2     14
+ext_int1_isr                                                                      0x00100     22
+main                                                                              0x00116     55
+_lcd_write_nibble_G100                                                            0x0014D     20
+_lcd_write_data                                                                   0x00161     12
+lcd_gotoxy                                                                        0x0016D     13
+lcd_clear                                                                         0x0017A     12
+lcd_putchar                                                                       0x00186     21
+lcd_puts                                                                          0x0019B     17
+lcd_init                                                                          0x001AC     46
+sleep_enable                                                                      0x001DA      4
+sleep_disable                                                                     0x001DE      4
+powerdown                                                                         0x001E2      9

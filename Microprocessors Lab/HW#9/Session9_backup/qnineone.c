@@ -28,19 +28,18 @@ Data Stack size         : 512
 #include <delay.h>
 
 char eeprom* data;
-char* temp_data;
+char temp_data[15];
 char temp;
 int index = 0;
 
 void key_find_save(int row_number)
 {
-    
     switch(row_number)
     {
         case 4:
-            if(!PINA.0)
-                temp = '0';
-            else if(!PINA.1)         
+            if(!PINA.0){
+                temp = '0';    
+            } else if(!PINA.1)         
                 temp = '1';
             else if(!PINA.2)
                 temp = '2';
@@ -90,41 +89,45 @@ void key_find()
 {
     PORTA.4 = 0;
     key_find_save(4);
-    delay_ms(50); 
+    delay_ms(5); 
     PORTA.4 = 1;
     
     PORTA.5 = 0;
     key_find_save(5);
-    delay_ms(50);
+    delay_ms(5);
     PORTA.5 = 1;
     
     PORTA.6 = 0;
     key_find_save(6);
-    delay_ms(50);
+    delay_ms(5);
     PORTA.6 = 1;
     
     PORTA.7 = 0;
     key_find_save(7);
-    delay_ms(50);
+    delay_ms(5);
     PORTA.7 = 1; 
 }
 
 // External Interrupt 0 service routine
 interrupt [EXT_INT0] void ext_int0_isr(void)
-{
-    if(temp_data)
-    {     
-        int i;
-        for(i=0; i<15; i++)
-            data[i] = temp_data[i];
-    }             
+{     
+    int i;
+    for(i=0; i<index; i++)
+        data[i] = temp_data[i];      
+    lcd_clear();
+    lcd_puts("int done");    
 }
 
 // External Interrupt 1 service routine
 interrupt [EXT_INT1] void ext_int1_isr(void)
 {
+    int i;
     lcd_clear();
-    lcd_putse(data);
+    lcd_puts("int1 start");
+    delay_ms(50);                            
+    lcd_clear();   
+    for(i=0; i<index; i++)
+        lcd_puts(temp_data);        
 }
 
 void main(void)
@@ -134,9 +137,9 @@ void main(void)
 // Input/Output Ports initialization
 // Port A initialization
 // Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=In Bit0=In 
-DDRA=(0<<DDA7) | (0<<DDA6) | (0<<DDA5) | (0<<DDA4) | (0<<DDA3) | (0<<DDA2) | (0<<DDA1) | (0<<DDA0);
+DDRA=(1<<DDA7) | (1<<DDA6) | (1<<DDA5) | (1<<DDA4) | (0<<DDA3) | (0<<DDA2) | (0<<DDA1) | (0<<DDA0);
 // State: Bit7=T Bit6=T Bit5=T Bit4=T Bit3=T Bit2=T Bit1=T Bit0=T 
-PORTA=(0<<PORTA7) | (0<<PORTA6) | (0<<PORTA5) | (0<<PORTA4) | (0<<PORTA3) | (0<<PORTA2) | (0<<PORTA1) | (0<<PORTA0);
+PORTA=(1<<PORTA7) | (1<<PORTA6) | (1<<PORTA5) | (1<<PORTA4) | (1<<PORTA3) | (1<<PORTA2) | (1<<PORTA1) | (1<<PORTA0);
 
 // Port B initialization
 // Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=In Bit0=In 
@@ -256,10 +259,15 @@ lcd_init(16);
 while (1)
       {
       key_find();
-      temp_data[index] = temp;
+      if(temp != 0){          
+        lcd_clear();
+        lcd_putchar(temp);
+        temp_data[index] = temp;
+        temp = 0;
+      }
       if(index < 15)
         index++;
       else 
         index = 0;
-      }
+      }       
 }

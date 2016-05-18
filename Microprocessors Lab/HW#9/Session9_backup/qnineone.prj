@@ -8,7 +8,7 @@ C=
 D=4/24/2016
 Files=1
 F1=qnineone.c
-OpenedFiles=2
+OpenedFiles=1
 OF1=qnineone.c
 Active1=1
 DebugOutputListFilesDirectory=Debug\List
@@ -21,15 +21,16 @@ OutputExecutableFilesDirectory=Release\Exe
 OutputLinkerFilesDirectory=Release\Exe
 AllowDisplayFunctionCallTree=1
 CleanUp=2
+TimeStamp0=1217957357
 EditorPanelMode=0
 ActiveEditorPanel=0
 Active0=0
 EditorPanel0=0
 PageIndex0=0
 EditorPanel1=0
-TimeStamp1=1217955944
+TimeStamp1=1217957357
 PageIndex1=1
-OF2=C:\Program Files (x86)\CodeVision\inc\alcd.h
+OF2=C:\cvavr\inc\alcd.h
 Active2=0
 EditorPanel2=0
 TimeStamp2=1032677704
@@ -132,8 +133,8 @@ WatchAVR8LAutoVariables=0
 UseEEPROMLocation0=1
 RebuildAll=0
 LinkageInformationPresent=1
-COFFileTimeStamp=1217955949
-Build=3
+COFFileTimeStamp=1218542524
+Build=19
 [DefinedSymbolsDebug]
 Count=0
 [Compiler]
@@ -235,7 +236,7 @@ UseEEPROMLocation0=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=3
+Build=19
 [DefinedSymbols]
 Count=0
 [StartUp]
@@ -332,8 +333,10 @@ VerifyProgramming=1
 ProgrammingCounter=0
 RunUserProg=0
 [HeadersList]
-Files=1
+Files=3
 F1=C:\Users\siava\Documents\CodeVision\Session9_backup\qnineone.c
+F2=E:\1shanbe\Session9_backup\qnineone.c
+F3=D:\GoogleDrive\Academic Courses\Microprocessors\Microprocessors Lab\HW#9\Session9_backup\qnineone.c
 [BuildInfoCompiler]
 L1=Build configuration: Debug
 L2=Chip: ATmega32
@@ -351,8 +354,8 @@ L13=Enhanced function parameters passing: Yes
 L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
-L17=Build: 3
-L18=0 line(s) compiled
+L17=Build: 18
+L18=2576 line(s) compiled
 L19=No errors
 L20=No warnings
 L21=
@@ -360,32 +363,32 @@ L22=Bit variables size: 0 byte(s)
 L23=
 L24=Data Stack area: 0x60 to 0x25F
 L25=Data Stack size: 512 byte(s)
-L26=Estimated Data Stack usage: 23 byte(s)
+L26=Estimated Data Stack usage: 27 byte(s)
 L27=
-L28=RAM Global variables area: 0x260 to 0x263
-L29=RAM Global variables size: 4 byte(s)
+L28=RAM Global variables area: 0x260 to 0x286
+L29=RAM Global variables size: 39 byte(s)
 L30=
-L31=Hardware Stack area: 0x264 to 0x85F
-L32=Hardware Stack size: 1532 byte(s)
+L31=Hardware Stack area: 0x287 to 0x85F
+L32=Hardware Stack size: 1497 byte(s)
 L33=
 L34=Heap size: 0 byte(s)
 L35=
-Lines=37
+Lines=38
 L36=EEPROM usage: 0 byte(s), 0.0% of EEPROM
-L37=Program size: 545 words (1090 bytes), 3.3% of FLASH
-L38=20 words (40 bytes), 3.5% reduced by Code Compression
+L37=Program size: 555 words (1110 bytes), 3.4% of FLASH
+L38=30 words (60 bytes), 5.1% reduced by Code Compression
 [BuildInfoAssembler]
 Lines=12
 L1=AVRASM: AVR macro assembler 2.1.30 (build 592 Nov  7 2008 12:38:17)
 L2=Copyright (C) 1995-2008 ATMEL Corporation
 L3=
-L4=C:\Users\siava\Documents\CodeVision\Session9_backup\Debug\List\qnineone.asm(2044): No EEPROM data, deleting C:\Users\siava\Documents\CodeVision\Session9_backup\Debug\Exe\qnineone.eep
+L4=D:\GoogleDrive\Academic Courses\Microprocessors\Microprocessors Lab\HW#9\Session9_backup\Debug\List\qnineone.asm(2067): No EEPROM data, deleting D:\GoogleDrive\Academic Courses\Microprocessors\Microprocessors Lab\HW#9\Session9_backup\Debug\Exe\qnineone.eep
 L5=
 L6=ATmega32 memory use summary [bytes]:
 L7=Segment   Begin    End      Code   Data   Used    Size   Use%
 L8=---------------------------------------------------------------
-L9=[.cseg] 0x000000 0x000442   1072     18   1090   32768   3.3%
-L10=[.dseg] 0x000060 0x000264      0      4      4    2048   0.2%
+L9=[.cseg] 0x000000 0x000456   1060     50   1110   32768   3.4%
+L10=[.dseg] 0x000060 0x000287      0     39     39    2048   1.9%
 L11=[.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 L12=
 [Header1]
@@ -394,22 +397,28 @@ F1=C:\Program Files (x86)\CodeVision\inc\mega32.h
 F2=C:\Program Files (x86)\CodeVision\inc\mega32_bits.h
 F3=C:\Program Files (x86)\CodeVision\inc\alcd.h
 F4=C:\Program Files (x86)\CodeVision\inc\delay.h
+[Header2]
+Files=4
+F1=C:\cvavr\inc\mega32.h
+F2=C:\cvavr\inc\mega32_bits.h
+F3=C:\cvavr\inc\alcd.h
+F4=C:\cvavr\inc\delay.h
 [Bookmarks0]
 Row=0
 Column=0
 ScrollPosX=0
 ScrollPosY=0
-TimeStamp=1217962130
+TimeStamp=1218543749
 [BookmarksFoldedCode]
 Files=2
 F1=qnineone.c
-F2=C:\Program Files (x86)\CodeVision\inc\alcd.h
+F2=C:\cvavr\inc\alcd.h
 [Bookmarks1]
-TimeStamp=1217955944
-Row=52
-Column=20
+TimeStamp=1217957357
+Row=32
+Column=14
 ScrollPosX=0
-ScrollPosY=52
+ScrollPosY=18
 BK0=-1
 BK1=-1
 BK2=-1
@@ -420,12 +429,10 @@ BK6=-1
 BK7=-1
 BK8=-1
 BK9=-1
-[FoldedCode1]
-Blocks=0
 [Bookmarks2]
 TimeStamp=1032677704
-Row=15
-Column=17
+Row=0
+Column=0
 ScrollPosX=0
 ScrollPosY=12
 BK0=-1
@@ -439,4 +446,12 @@ BK7=-1
 BK8=-1
 BK9=-1
 [FoldedCode2]
+Blocks=0
+[Header3]
+Files=4
+F1=C:\Program Files (x86)\CodeVision\inc\mega32.h
+F2=C:\Program Files (x86)\CodeVision\inc\mega32_bits.h
+F3=C:\Program Files (x86)\CodeVision\inc\alcd.h
+F4=C:\Program Files (x86)\CodeVision\inc\delay.h
+[FoldedCode1]
 Blocks=0

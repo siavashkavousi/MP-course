@@ -1,7 +1,8 @@
 RAM Allocation [bytes]
 Variable                                                                          Address   Size
 ------------------------------------------------------------------------------------------------
-_base_y                                                                           0x0260       4
+temp_data                                                                         0x0274      15
+_base_y                                                                           0x0283       4
 
 EEPROM Allocation [bytes]
 Variable                                                                          Address   Size
@@ -11,41 +12,24 @@ Register Allocation
 Variable                                                                          Register  Size
 ------------------------------------------------------------------------------------------------
 data                                                                              R4,R5        2
-temp_data                                                                         R6,R7        2
-temp                                                                              R9           1
-index                                                                             R10,R11      2
-_lcd_x                                                                            R8           1
-_lcd_y                                                                            R13          1
-_lcd_maxx                                                                         R12          1
+temp                                                                              R7           1
+index                                                                             R8,R9        2
+_lcd_x                                                                            R6           1
+_lcd_y                                                                            R11          1
+_lcd_maxx                                                                         R10          1
 
 FLASH Allocation [words]
 Function                                                                          Address   Size
 ------------------------------------------------------------------------------------------------
-key_find_save                                                                     0x00060     91
-key_find                                                                          0x000BB     17
-ext_int0_isr                                                                      0x000CC     48
-ext_int1_isr                                                                      0x000FC     30
-main                                                                              0x0011A     66
-_lcd_write_nibble_G100                                                            0x0015C     20
-_lcd_write_data                                                                   0x00170     12
-lcd_gotoxy                                                                        0x0017C     13
-lcd_clear                                                                         0x00189     10
-lcd_putchar                                                                       0x00193     21
-lcd_putse                                                                         0x001A8     20
-lcd_init                                                                          0x001BC     43
-
-FLASH Allocation [words]
-Function                                                                          Address   Size
-------------------------------------------------------------------------------------------------
-key_find_save                                                                     0x00060     91
-key_find                                                                          0x000BB     17
-ext_int0_isr                                                                      0x000CC     48
-ext_int1_isr                                                                      0x000FC     30
-main                                                                              0x0011A     66
-_lcd_write_nibble_G100                                                            0x0015C     20
-_lcd_write_data                                                                   0x00170     12
-lcd_gotoxy                                                                        0x0017C     13
-lcd_clear                                                                         0x00189     10
-lcd_putchar                                                                       0x00193     21
-lcd_putse                                                                         0x001A8     20
-lcd_init                                                                          0x001BC     43
+key_find_save                                                                     0x00070     91
+key_find                                                                          0x000CB     17
+ext_int0_isr                                                                      0x000DC     26
+ext_int1_isr                                                                      0x000F6     37
+main                                                                              0x0011B     74
+_lcd_write_nibble_G100                                                            0x00165     20
+_lcd_write_data                                                                   0x00179     12
+lcd_gotoxy                                                                        0x00185     13
+lcd_clear                                                                         0x00192     10
+lcd_putchar                                                                       0x0019C     21
+lcd_puts                                                                          0x001B1     17
+lcd_init                                                                          0x001C2     43
