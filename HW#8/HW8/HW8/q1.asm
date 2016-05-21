@@ -35,12 +35,9 @@ reset_isr:
 	in temp, UCSRB
 	ori temp, (1 << TXEN)
 	out UCSRB, temp
-	// Sets 8 bit data format (NOTE: UCRSEL must be one when writing to UCSRC)
+	// Sets 8 bit data format (NOTE: UCRSEL must be one when writing to UCSRC) and sets odd parity and 2-bit stop bit
 	in temp, UCSRC
-	ori temp, (1 << URSEL) | (1 << UCSZ0) | (1 << UCSZ1)
-	out UCSRC, temp
-	// Sets odd parity and 2-bit stop bit
-	ldi temp, (1 << UPM0) | (1 << UPM1) | (1 << USBS)
+	ori temp, (1 << URSEL) | (1 << UCSZ0) | (1 << UCSZ1) | (1 << UPM0) | (1 << UPM1) | (1 << USBS)
 	out UCSRC, temp
 
 	call column_set
@@ -78,13 +75,13 @@ start:
 	rjmp start
 
 uart_transmit:
-	sbic UCSRA, UDRE
+	sbis UCSRA, UDRE
 	rjmp uart_transmit
 	out UDR, argument
 	ret
 
 uart_receive:
-	sbic UCSRA, RXC
+	sbis UCSRA, RXC
 	rjmp uart_receive
 	in local_var, UCSRA
 	in return, UDR
