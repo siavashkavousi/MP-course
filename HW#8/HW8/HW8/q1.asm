@@ -86,7 +86,13 @@ uart_transmit:
 uart_receive:
 	sbic UCSRA, RXC
 	rjmp uart_receive
+	in local_var, UCSRA
 	in return, UDR
+	// if error, return -1
+	andi local_var, (1 << FE) | (1 << DOR) | (1 << PE)
+	breq uart_receive_no_err
+	ldi return, low(-1)
+uart_receive_no_err:
 	ret
 
 pullup_pd2:
