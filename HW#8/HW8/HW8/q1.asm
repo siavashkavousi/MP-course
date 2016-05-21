@@ -31,11 +31,11 @@ reset_isr:
 	// Sets buad-rate to 9600 for 1 MHz frequency
 	ldi temp, 0x06
 	out UBRRL, temp
-	// Enables receiver and transmitter
+	// Enables receiver
 	in temp, UCSRB
-	ori temp, (1 << TXEN) | (1 << RXEN)
+	ori temp, (1 << TXEN)
 	out UCSRB, temp
-	// Sets 8 bit data format (NOTE: UCRSEL must be one when writing to UCSRC
+	// Sets 8 bit data format (NOTE: UCRSEL must be one when writing to UCSRC)
 	in temp, UCSRC
 	ori temp, (1 << URSEL) | (1 << UCSZ0) | (1 << UCSZ1)
 	out UCSRC, temp
@@ -79,11 +79,13 @@ start:
 
 uart_transmit:
 	sbic UCSRA, UDRE
+	rjmp uart_transmit
 	out UDR, argument
 	ret
 
 uart_receive:
 	sbic UCSRA, RXC
+	rjmp uart_receive
 	in return, UDR
 	ret
 
